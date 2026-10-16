@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মজার দুনিয়া 🎉</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg:#100d25;
+  --card:#211a43;
+  --pink:#ff63b5;
+  --cyan:#56edff;
+  --yellow:#ffe66d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:var(--bg);color:white;
+ font-family:'Hind Siliguri',sans-serif;
+ overflow-x:hidden;
+}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-1;
+ background:
+ radial-gradient(circle at 15% 10%,#54215b 0,transparent 35%),
+ radial-gradient(circle at 90% 65%,#123d61 0,transparent 35%);
+}
+button{font-family:inherit;cursor:pointer}
+button:active{transform:scale(.96)}
+header{text-align:center;padding:35px 15px 22px}
+.logo{font-size:clamp(34px,8vw,58px);font-weight:800;
+ color:var(--yellow);text-shadow:0 0 22px #ff63b5}
+.subtitle{color:#e0d7ff}
+.pill{
+ display:inline-block;padding:6px 15px;border-radius:30px;
+ background:#ffffff12;border:1px solid #ffffff30;font-size:13px
+}
+nav{
+ position:sticky;top:0;z-index:10;display:flex;gap:8px;
+ justify-content:center;flex-wrap:wrap;padding:10px;
+ background:#100d25eF;backdrop-filter:blur(12px)
+}
+nav a{color:white;text-decoration:none;padding:7px 12px;
+ border-radius:20px;background:#ffffff10;font-size:13px}
+nav a:hover{background:#ff63b5}
+.container{max-width:1000px;margin:auto;padding:15px}
+.hero{
+ text-align:center;padding:25px 15px 35px;
+ border:1px solid #ffffff1c;border-radius:28px;
+ background:linear-gradient(130deg,#ff63b526,#56edff12)
+}
+.hero h1{font-size:clamp(27px,6vw,43px);margin:12px 0}
+.hero p{color:#ded8f5}
+.btn{
+ border:0;border-radius:14px;padding:12px 19px;
+ background:linear-gradient(120deg,#ff63b5,#a86bff);
+ color:white;font-weight:700;font-size:15px;
+ box-shadow:0 5px 20px #ff63b533
+}
+.btn.alt{background:linear-gradient(120deg,#13c8c8,#426bff)}
+.btn.yellow{background:linear-gradient(120deg,#ffe66d,#ff9b5c);color:#29152e}
+.section-title{font-size:25px;margin:32px 0 15px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.card{
+ background:linear-gradient(145deg,#29204d,#191630);
+ border:1px solid #ffffff18;border-radius:20px;padding:17px;
+ min-width:0;overflow:hidden
+}
+.card h3{margin:5px 0 8px;font-size:19px}
+.card p{color:#d6cfea;font-size:14px;line-height:1.7}
+.emoji{font-size:38px}
+.result{margin-top:13px;padding:12px;background:#ffffff0d;
+ border-radius:13px;min-height:45px;line-height:1.8}
+input{
+ width:100%;padding:12px;border:1px solid #ffffff30;
+ background:#100d25;color:white;border-radius:12px;
+ font-size:16px;margin:8px 0
+}
+.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.actions .btn{flex:1}
+.game-area{
+ position:relative;min-height:150px;margin-top:12px;
+ background:#100d25;border-radius:15px;overflow:hidden;
+ border:1px solid #ffffff18
+}
+#target{
+ position:absolute;font-size:36px;display:none;
+ background:none;border:0;padding:0
+}
+.big-number{font-size:40px;color:var(--yellow);font-weight:800}
+.center{text-align:center}
+.joke{font-size:18px;color:white!important}
+#toast{
+ position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+ background:#ffe66d;color:#24172d;padding:12px 20px;
+ border-radius:25px;font-weight:700;z-index:100;
+ display:none;max-width:90%;text-align:center
+}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+.float{
+ position:fixed;bottom:-50px;pointer-events:none;z-index:-1;
+ animation:floatUp 8s linear forwards
+}
+@keyframes floatUp{
+ to{transform:translateY(-115vh) rotate(360deg);opacity:0}
+}
+@keyframes wiggle{
+ 0%,100%{transform:rotate(-3deg)}
+ 50%{transform:rotate(3deg)}
+}
+.wiggle{display:inline-block;animation:wiggle 1s infinite}
+footer{text-align:center;padding:35px 12px 25px;color:#aaa2c8}
+.signature{font-family:'Poppins',sans-serif;font-size:11px;
+ letter-spacing:2px;color:#d9b7ff;opacity:.8;margin-top:12px}
+@media(min-width:650px){
+ .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .hero{padding:40px}
+}
+@media(max-width:360px){
+ .grid{grid-template-columns:1fr}
+ nav a{padding:6px 9px}
+ .card{padding:14px}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<header>
+ <div class="pill">✨ স্বাগতম আনন্দের রাজ্যে ✨</div>
+ <div class="logo">মজার দুনিয়া <span class="wiggle">🎉</span></div>
+ <div class="subtitle">হাসো, খেলো, মন খুলে আনন্দ করো! 💖</div>
+</header>
+
+<nav>
+ <a href="#games">🎮 গেমস</a>
+ <a href="#jokes">😂 জোকস</a>
+ <a href="#riddles">🧠 ধাঁধা</a>
+ <a href="#fun">🎁 মজা</a>
+</nav>
+
+<main class="container">
+ <section class="hero">
+  <div style="font-size:52px">🤩🎈🥳</div>
+  <h1>আজ মন খারাপের ছুটি!</h1>
+  <p>এখানে দুশ্চিন্তা ঢুকতে পারবে না।<br>
+  শুধু হাসি, মজা আর আনন্দের অনুমতি আছে! 😜</p>
+  <button class="btn yellow" onclick="celebrate()">🎊 আনন্দ শুরু করো</button>
+  <p id="welcomeResult"></p>
+ </section>
+
+ <h2 class="section-title" id="games">🎮 মজার গেম জোন</h2>
+ <div class="grid">
+
+  <section class="card">
+   <div class="emoji">🔢</div>
+   <h3>১. সংখ্যা ধরো</h3>
+   <p>১ থেকে ২০-এর মধ্যে সংখ্যাটা অনুমান করো!</p>
+   <input id="guess" type="number" min="1" max="20" placeholder="একটা সংখ্যা লেখো">
+   <button class="btn" onclick="checkGuess()">উত্তর দাও</button>
+   <button class="btn alt" onclick="newGuess()">নতুন গেম</button>
+   <div class="result" id="guessResult">গেম শুরু করো! 🎯</div>
+  </section>
+
+  <section class="card">
+   <div class="emoji">✂️</div>
+   <h3>২. পাথর-কাগজ-কাঁচি</h3>
+   <p>বন্ধু কিংবা কম্পিউটারের সঙ্গে লড়াই!</p>
+   <div class="actions">
+    <button class="btn" onclick="rps('পাথর')">✊</button>
+    <button class="btn" onclick="rps('কাগজ')">✋</button>
+    <button class="btn" onclick="rps('কাঁচি')">✌️</button>
+   </div>
+   <div class="result" id="rpsResult">তোমার চাল বেছে নাও!</div>
+  </section>
+
+  <section class="card">
+   <div class="emoji">⚡</div>
+   <h3>৩. রিফ্লেক্স চ্যালেঞ্জ</h3>
+   <p>সবুজ সংকেত এলে যত দ্রুত সম্ভব চাপ দাও!</p>
+   <button class="btn" id="reactionStart" onclick="startReaction()">খেলা শুরু</button>
+   <div class="result" id="reactionResult">আগে চাপ দিলে কিন্তু ধরা! 😏</div>
+  </section>
+
+  <section class="card">
+   <div class="emoji">🎯</div>
+   <h3>৪. ইমোজি ধরো</h3>
+   <p>১০ সেকেন্ডে যত বেশি সম্ভব 😂-এ চাপ দাও!</p>
+   <div class="result">স্কোর: <span id="hitScore">0</span> | সময়: <span id="hitTime">10</span></div>
+   <div class="game-area" id="hitArea">
+    <button id="target" onclick="hitTarget()">😂</button>
+   </div>
+   <button class="btn" onclick="startHitGame()" style="margin-top:10px">আবার খেলি</button>
+  </section>
+
+  <section class="card">
+   <div class="emoji">🧮</div>
+   <h3>৫. ঝটপট গণিত</h3>
+   <p id="mathQuestion">প্রস্তুত তো?</p>
+   <input id="mathAnswer" type="number" placeholder="উত্তর লেখো">
+   <button class="btn" onclick="checkMath()">জমা দাও</button>
+   <div class="result" id="mathResult">মাথার ব্যায়াম! 🧠</div>
+   <button class="btn alt" onclick="newMath()" style="margin-top:8px">নতুন প্রশ্ন</button>
+  </section>
+
+  <section class="card">
+   <div class="emoji">🎲</div>
+   <h3>৬. ভাগ্য পরীক্ষা</h3>
+   <p>আজকের মজার ভাগ্যবান সংখ্যা জানো!</p>
+   <div class="center big-number" id="luckyNumber">?</div>
+   <button class="btn yellow" onclick="lucky()">সংখ্যা বের করো</button>
+   <div class="result" id="luckyResult">ভাগ্যবান হতে টিকিট লাগে না! 😎</div>
+  </section>
+ </div>
+
+ <h2 class="section-title" id="jokes">😂 হাসির কারখানা</h2>
+ <section class="card center">
+  <div class="emoji">🤣</div>
+  <h3>হাসি থামানো নিষেধ!</h3>
+  <p class="joke" id="jokeText">এখানে চাপ দাও, হাসি নিজ দায়িত্বে সামলাও!</p>
+  <button class="btn" onclick="nextJoke()">আরও জোকস 🤣</button>
+  <button class="btn alt" onclick="copyJoke()">জোকস কপি 📋</button>
+ </section>
+
+ <h2 class="section-title" id="riddles">🧠 বুদ্ধির ধাঁধা</h2>
+ <section class="card">
+  <div class="emoji">🕵️</div>
+  <h3 id="riddleTitle">ধাঁধা নম্বর ১</h3>
+  <p id="riddleQuestion">যত কাটবে, তত বড় হবে। সেটা কী?</p>
+  <input id="riddleAnswer" placeholder="উত্তর লিখো">
+  <div class="actions">
+   <button class="btn" onclick="checkRiddle()">উত্তর মিলাও</button>
+   <button class="btn alt" onclick="showRiddleAnswer()">উত্তর দেখো</button>
+   <button class="btn yellow" onclick="nextRiddle()">পরের ধাঁধা</button>
+  </div>
+  <div class="result" id="riddleResult">দেখি তো কতটা বুদ্ধিমান! 😎</div>
+ </section>
+
+ <h2 class="section-title" id="fun">🎁 বিনোদনের বাক্স</h2>
+ <div class="grid">
+  <section class="card center">
+   <div class="emoji">💌</div>
+   <h3>বন্ধুকে মজার মেসেজ</h3>
+   <p id="messageText">বন্ধুত্ব মানেই বিনা পয়সায় পাগলামি!</p>
+   <button class="btn" onclick="nextMessage()">নতুন মেসেজ</button>
+   <button class="btn alt" onclick="copyMessage()">কপি করো</button>
+  </section>
+
+  <section class="card center">
+   <div class="emoji">🎭</div>
+   <h3>আজকের মজার চ্যালেঞ্জ</h3>
+   <p id="challengeText">একটা চ্যালেঞ্জ নাও!</p>
+   <button class="btn" onclick="newChallenge()">চ্যালেঞ্জ দাও</button>
+  </section>
+
+  <section class="card center">
+   <div class="emoji">🌈</div>
+   <h3>মুড রিফ্রেশার</h3>
+   <p id="moodText">আজকের মুড কেমন?</p>
+   <div class="actions">
+    <button class="btn" onclick="setMood('😄','আজ হাসির দিন!')">😄</button>
+    <button class="btn" onclick="setMood('🥱','একটু বিশ্রামও জরুরি!')">🥱</button>
+    <button class="btn" onclick="setMood('🥳','পার্টি শুরু হোক!')">🥳</button>
+   </div>
+  </section>
+
+  <section class="card center">
+   <div class="emoji">🎨</div>
+   <h3>রঙ বদলের জাদু</h3>
+   <p>এক ক্লিকে ওয়েবসাইটের রঙ পাল্টাও!</p>
+   <button class="btn" onclick="changeTheme()">জাদু দেখাও ✨</button>
+  </section>
+
+  <section class="card center">
+   <div class="emoji">👏</div>
+   <h3>তালি মিটার</h3>
+   <p>তোমার আনন্দের স্কোর বাড়াও!</p>
+   <div class="big-number" id="clapScore">0</div>
+   <button class="btn" onclick="clap()">👏 তালি দাও</button>
+  </section>
+
+  <section class="card center">
+   <div class="emoji">🎆</div>
+   <h3>আনন্দের বিস্ফোরণ</h3>
+   <p>রঙিন কনফেটি দিয়ে উদ্‌যাপন করো!</p>
+   <button class="btn yellow" onclick="celebrate()">উৎসব শুরু!</button>
+  </section>
+ </div>
+
+ <section class="hero" style="margin-top:30px">
+  <div style="font-size:48px">💖🌟🎉</div>
+  <h2>একটা কথা মনে রেখো!</h2>
+  <p>প্রতিদিন সবকিছু পারফেক্ট হবে না।<br>
+  তবু ছোট্ট একটা হাসিও দিনটাকে সুন্দর করে দিতে পারে।<br>
+  তাই নিজের যত্ন নাও, অন্যকেও হাসাও! 🫶</p>
+  <button class="btn" onclick="celebrate()">আমাকে হাসাও! 😁</button>
+ </section>
+</main>
+
+<footer>
+ <div>✨ হাসি ছড়িয়ে দাও, আনন্দ বাড়িয়ে দাও ✨</div>
+ <div>Made with 💖 for everyone</div>
+ <div class="signature">Nafiz Sheikh</div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let secret = Math.floor(Math.random()*20)+1;
+let guessCount = 0;
+let clapCount = 0;
+let themeIndex = 0;
+let jokeIndex = -1;
+let messageIndex = -1;
+let challengeIndex = -1;
+let riddleIndex = 0;
+let reactionTimer = null;
+let reactionStartTime = 0;
+let reactionState = "idle";
+let hitTimer = null;
+let hitInterval = null;
+let hitScore = 0;
+let hitSeconds = 10;
+let mathA = 0, mathB = 0, mathOp = "+";
+let toastTimer = null;
+
+function toast(msg){
+ const t=$("toast");
+ t.textContent=msg;t.style.display="block";
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>t.style.display="none",2300);
+}
+function rand(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+function celebrate(){
+ const canvas=$("confetti"),ctx=canvas.getContext("2d");
+ canvas.width=innerWidth;canvas.height=innerHeight;
+ const pieces=Array.from({length:150},()=>({
+  x:Math.random()*canvas.width,y:-Math.random()*canvas.height,
+  s:3+Math.random()*6,v:2+Math.random()*5,
+  c:rand(["#ff63b5","#56edff","#ffe66d","#a86bff","#7dffad"]),
+  r:Math.random()*6
+ }));
+ let frames=0;
+ function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p=>{
+   p.y+=p.v;p.x+=Math.sin(p.y/30);p.r+=.1;
+   ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+   ctx.fillStyle=p.c;ctx.fillRect(0,0,p.s,p.s*1.7);ctx.restore();
+  });
+  if(++frames<120)requestAnimationFrame(draw);
+  else ctx.clearRect(0,0,canvas.width,canvas.height);
+ }
+ draw();
+ $("welcomeResult").textContent="ইয়েহ! আনন্দ শুরু হয়ে গেছে! 🥳";
+ toast("হাসি ছড়ানো মিশন শুরু! 🎉");
+}
+function floatEmoji(){
+ const e=document.createElement("div");
+ e.className="float";e.textContent=rand(["💖","✨","🎈","⭐","😂","🌈"]);
+ e.style.left=Math.random()*95+"vw";e.style.fontSize=(18+Math.random()*20)+"px";
+ document.body.appendChild(e);setTimeout(()=>e.remove(),8000);
+}
+setInterval(floatEmoji,1800);
+
+function newGuess(){
+ secret=Math.floor(Math.random()*20)+1;guessCount=0;
+ $("guess").value="";$("guessResult").textContent="নতুন সংখ্যা তৈরি! 🎯";
+}
+function checkGuess(){
+ const v=Number($("guess").value);guessCount++;
+ if(!$("guess").value||v<1||v>20||!Number.isInteger(v)){
+  $("guessResult").textContent="১ থেকে ২০-এর মধ্যে পূর্ণসংখ্যা লেখো!";
+  return;
+ }
+ if(v===secret){
+  $("guessResult").textContent=`দারুণ! ${guessCount} চেষ্টায় ধরেছ! 🏆`;
+  celebrate();
+ }else $("guessResult").textContent=v<secret?"আরও বড় সংখ্যা! ⬆️":"আরও ছোট সংখ্যা! ⬇️";
+}
+$("guess").addEventListener("keydown",e=>{if(e.key==="Enter")checkGuess()});
+
+function rps(me){
+ const choices=["পাথর","কাগজ","কাঁচি"],cpu=rand(choices);
+ let result=me===cpu?"ড্র! আবার খেলো 😎":
+ ((me==="পাথর"&&cpu==="কাঁচি")||(me==="কাগজ"&&cpu==="পাথর")||(me==="কাঁচি"&&cpu==="কাগজ"))
+ ?"তুমি জিতেছ! 🏆":"কম্পিউটার জিতেছে! 😜";
+ $("rpsResult").textContent=`তুমি: ${me} | কম্পিউটার: ${cpu} — ${result}`;
+}
+
+function startReaction(){
+ clearTimeout(reactionTimer);
+ reactionState="waiting";
+ $("reactionStart").textContent="অপেক্ষা করো...";
+ $("reactionStart").style.background="#d94b65";
+ $("reactionResult").textContent="সবুজ হওয়ার আগে চাপ দেবে না! 👀";
+ reactionTimer=setTimeout(()=>{
+  if(reactionState!=="waiting")return;
+  reactionState="ready";reactionStartTime=performance.now();
+  $("reactionStart").textContent="এখন চাপ দাও! 🟢";
+  $("reactionStart").style.background="#20b96b";
+ },1500+Math.random()*3000);
+}
+$("reactionStart").addEventListener("click",()=>{
+ if(reactionState==="ready"){
+  const ms=Math.round(performance.now()-reactionStartTime);
+  reactionState="done";$("reactionStart").textContent="আবার খেলো";
+  $("reactionResult").textContent=`তোমার সময় ${ms} মিলিসেকেন্ড! ${ms<250?"বিদ্যুৎ গতির আঙুল! ⚡":"আরেকবার চেষ্টা করো!"}`;
+ }else if(reactionState==="waiting"){
+  clearTimeout(reactionTimer);reactionState="done";
+  $("reactionResult").textContent="আরে! সবুজ হওয়ার আগেই! 😜";
+  $("reactionStart").textContent="আবার শুরু";
+ }else startReaction();
+});
+
+function moveTarget(){
+ const a=$("hitArea"),t=$("target");
+ t.style.left=Math.max(0,Math.random()*(a.clientWidth-45))+"px";
+ t.style.top=Math.max(0,Math.random()*(a.clientHeight-48))+"px";
+}
+function hitTarget(){
+ if(hitSeconds<=0)return;
+ hitScore++;$("hitScore").textContent=hitScore;moveTarget();
+}
+function startHitGame(){
+ clearInterval(hitInterval);clearTimeout(hitTimer);
+ hitScore=0;hitSeconds=10;
+ $("hitScore").textContent="0";$("hitTime").textContent="10";
+ $("target").style.display="block";moveTarget();
+ hitInterval=setInterval(()=>{
+  hitSeconds--;$("hitTime").textContent=hitSeconds;
+  if(hitSeconds<=0){
+   clearInterval(hitInterval);$("target").style.display="none";
+   toast(`গেম শেষ! তোমার স্কোর ${hitScore} 🎯`);
+  }
+ },1000);
+}
+
+function newMath(){
+ mathA=Math.floor(Math.random()*15)+2;
+ mathB=Math.floor(Math.random()*10)+1;
+ mathOp=rand(["+","-","×"]);
+ if(mathOp==="-"&&mathB>mathA)[mathA,mathB]=[mathB,mathA];
+ $("mathQuestion").textContent=`${mathA} ${mathOp} ${mathB} = কত?`;
+ $("mathAnswer").value="";$("mathResult").textContent="উত্তর দাও, দেখি! 🧠";
+}
+function checkMath(){
+ const ans=mathOp==="+"?mathA+mathB:mathOp==="-"?mathA-mathB:mathA*mathB;
+ if(!$("mathAnswer").value){$("mathResult").textContent="আগে উত্তর লেখো!";return}
+ if(Number($("mathAnswer").value)===ans){
+  $("mathResult").textContent="একদম ঠিক! তোমার মাথা তো সুপার কম্পিউটার! 🏆";
+  newMath();
+ }else $("mathResult").textContent="আহা! আবার চেষ্টা করো। 😜";
+}
+newMath();
+
+function lucky(){
+ const n=Math.floor(Math.random()*100)+1;
+ $("luckyNumber").textContent=n;
+ $("luckyResult").textContent=rand([
+ "আজ একটা ভালো কাজ করো! 💖","হাসতে ভুলো না! 😄",
+ "তোমার পরের হাসিটাই আজকের বোনাস! ✨","বন্ধুকে একটা জোকস পাঠাও! 😂"
+ ]);
+}
+
+const jokes=[
+["শিক্ষক: বলো, সবচেয়ে অলস প্রাণী কোনটি?","ছাত্র: স্যার, জানি না। খুঁজে দেখার কষ্টটাও করতে ইচ্ছা করছে না! 😂"],
+["বন্ধু: তুই এত চুপচাপ কেন?","আমি কথা জমাচ্ছি, পরে একসঙ্গে আপডেট দেব! 🤣"],
+["শিক্ষক: হোমওয়ার্ক কোথায়?","ছাত্র: স্যার, খাতায় ছিল। খাতা বাসায় বিশ্রাম নিচ্ছে! 📚"],
+["মা: ফোন রেখে পড়তে বসো!","ছেলে: বসেছি তো মা, ফোনটা পাশে বসে আমাকে সাপোর্ট দিচ্ছে! 😜"],
+["বন্ধু: তোর ভবিষ্যৎ পরিকল্পনা কী?","আমি আগে ঘুম থেকে উঠি, তারপর ভবিষ্যৎ ঠিক করব! 😴"],
+["ডাক্তার: আপনার বিশ্রাম দরকার।","রোগী: তাহলে স্কুলে ছুটির সার্টিফিকেট দিন! 😆"],
+["বন্ধু: তোর ওয়াইফাই এত স্লো কেন?","কারণ ও-ও জীবনে একটু ধীরে চলতে চায়! 📶"],
+["শিক্ষক: পড়া মুখস্থ হয়েছে?","ছাত্র: জি স্যার, মুখস্থ ছিল, কিন্তু মুখ খুলতেই ভুলে গেলাম! 😅"],
+["বন্ধু: তুই কি জিনিয়াস?","না, আমি এখনও ট্রায়াল ভার্সন! 🤓"],
+["বাবা: পরীক্ষায় কেমন করেছ?","ছেলে: প্রশ্নপত্র আমার চেয়ে বেশি আত্মবিশ্বাসী ছিল! 😂"]
+];
+function nextJoke(){
+ jokeIndex=(jokeIndex+1)%jokes.length;
+ $("jokeText").textContent=jokes[jokeIndex].join(" ");
+}
+async function copyText(s){
+ try{await navigator.clipboard.writeText(s);toast("কপি হয়েছে! 📋")}
+ catch(e){toast("কপি করতে ব্রাউজারের অনুমতি লাগতে পারে।")}
+}
+function copyJoke(){copyText($("jokeText").textContent)}
+
+const riddles=[
+ {q:"যত কাটবে, তত বড় হবে। সেটা কী?",a:"গর্ত",alt:["গর্ত","hole"]},
+ {q:"দাঁত আছে, কিন্তু কামড়াতে পারে না। কী?",a:"চিরুনি",alt:["চিরুনি"]},
+ {q:"পা নেই, তবু চলে; মুখ নেই, তবু কথা বলে। কী?",a:"ঘড়ি",alt:["ঘড়ি","সময়"]},
+ {q:"যত শুকায়, তত ভেজায়। কী?",a:"তোয়ালে",alt:["তোয়ালে","গামছা"]},
+ {q:"এক ঘরে অনেক জানালা, তবু দরজা নেই। কী?",a:"মৌচাক",alt:["মৌচাক"]},
+ {q:"তোমারই জিনিস, কিন্তু অন্যরা তোমার চেয়ে বেশি ব্যবহার করে। কী?",a:"নাম",alt:["নাম"]}
+];
+function renderRiddle(){
+ const r=riddles[riddleIndex];
+ $("riddleTitle").textContent=`ধাঁধা নম্বর ${riddleIndex+1}`;
+ $("riddleQuestion").textContent=r.q;
+ $("riddleAnswer").value="";$("riddleResult").textContent="উত্তর দাও তো!";
+}
+function checkRiddle(){
+ const ans=$("riddleAnswer").value.trim().toLowerCase();
+ if(!ans){$("riddleResult").textContent="একটা উত্তর লেখো!";return}
+ if(riddles[riddleIndex].alt.some(x=>x.toLowerCase()===ans)){
+  $("riddleResult").textContent="সঠিক উত্তর! বাহ, বুদ্ধিমান! 🏆";
+ }else $("riddleResult").textContent="মেলেনি! আবার ভাবো অথবা উত্তর দেখো।";
+}
+function showRiddleAnswer(){
+ $("riddleResult").textContent="উত্তর: "+riddles[riddleIndex].a+" 💡";
+}
+function nextRiddle(){
+ riddleIndex=(riddleIndex+1)%riddles.length;renderRiddle();
+}
+renderRiddle();
+
+const messages=[
+ "বন্ধু, তুই একটা সীমিত সংস্করণের পাগল! 😂💖",
+ "তোর মতো বন্ধু থাকলে শত্রুরও বিনোদন লাগে! 🤣",
+ "মন খারাপ হলে ডাকিস, আর টাকা চাইলে নেটওয়ার্ক চলে যাবে! 😜",
+ "বন্ধুত্বের পাসওয়ার্ড: হাসি + দুষ্টুমি + বিশ্বাস! 🔐",
+ "তুই হাসলে ভালো লাগে, আর তুই হাসালে পেট ব্যথা করে! 😂",
+ "জীবনে বড় হ, কিন্তু আমার সামনে ভাব নিস না! 😎"
+];
+function nextMessage(){
+ messageIndex=(messageIndex+1)%messages.length;
+ $("messageText").textContent=messages[messageIndex];
+}
+function copyMessage(){copyText($("messageText").textContent)}
+
+const challenges=[
+ "৩০ সেকেন্ডে নিজের নাম উল্টো করে বলার চেষ্টা করো! 😜",
+ "বন্ধুকে সবচেয়ে অদ্ভুত ইমোজি পাঠাও! 🤪",
+ "এক মিনিট হাসিমুখে থাকার চেষ্টা করো! 😁",
+ "আজ কাউকে একটা সুন্দর প্রশংসা করো! 💖",
+ "নিজের বানানো একটা নতুন জোকস বলো! 😂",
+ "পাঁচটা প্রাণীর ডাক অভিনয় করে দেখাও! 🐱"
+];
+function newChallenge(){
+ challengeIndex=(challengeIndex+1)%challenges.length;
+ $("challengeText").textContent=challenges[challengeIndex];
+}
+function setMood(emoji,msg){
+ $("moodText").textContent=emoji+" "+msg;
+}
+const themes=[
+ ["#100d25","#211a43","#ff63b5","#56edff"],
+ ["#101d30","#19364a","#5ce1e6","#ffe66d"],
+ ["#25102a","#42183d","#ff78c9","#ffbf69"],
+ ["#10251f","#173e35","#80ffb1","#7dd3fc"]
+];
+function changeTheme(){
+ themeIndex=(themeIndex+1)%themes.length;
+ const t=themes[themeIndex];
+ document.documentElement.style.setProperty("--bg",t[0]);
+ document.documentElement.style.setProperty("--card",t[1]);
+ document.documentElement.style.setProperty("--pink",t[2]);
+ document.documentElement.style.setProperty("--cyan",t[3]);
+ document.body.style.background=t[0];
+ document.querySelectorAll(".card").forEach(c=>c.style.background=
+  `linear-gradient(145deg,${t[1]},${t[0]})`);
+ toast("ওয়াও! নতুন রঙের দুনিয়া! 🌈");
+}
+function clap(){
+ clapCount++;$("clapScore").textContent=clapCount;
+ if(clapCount%10===0)celebrate();
+ else toast("তালি! 👏 "+clapCount);
+}
+</script>
+</body>
+   </html>
